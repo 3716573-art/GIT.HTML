@@ -8,7 +8,7 @@
 
 body {
     background-color: #fbfffe;
-    color: #333;
+    color: #2c2c2c;
     line-height: 1.6;
 }
 
@@ -158,7 +158,7 @@ form textarea {
 footer {
     text-align: center;
     padding: 1.5rem;
-    background-color: #1a252f;
+    background-color: #1f2c38;
     color: white;
     margin-top: 2rem;
 }
