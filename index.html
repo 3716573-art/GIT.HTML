@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciberseguridad para Estudiantes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">🛡️ <span>CiberEdu</span></div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#consejos">Consejos</a></li>
+                <li><a href="#quiz">Autoevaluación</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Protege tu Identidad Digital</h1>
+            <p>Aprende a navegar seguro, proteger tus redes sociales y defender tu información académica en el mundo digital.</p>
+            <a href="#consejos" class="btn btn-primary">Empezar a aprender</a>
+        </div>
+    </section>
+
+    <section id="consejos" class="container">
+        <div class="section-title">
+            <h2>Guía de Protección Digital</h2>
+            <p>Encuentra rápidamente recomendaciones de seguridad con nuestro buscador inteligente.</p>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" id="buscador" placeholder="🔍 Buscar concepto (ej. contraseñas, phishing, wifi, 2fa)...">
+        </div>
+
+        <div class="cards-grid" id="lista-consejos">
+            <div class="card" data-titulo="contraseñas seguras claves clave seguridad">
+                <div class="card-icon">🔑</div>
+                <h3>Contraseñas Seguras</h3>
+                <p>Combina letras mayúsculas, números y símbolos. Nunca utilices tu fecha de nacimiento o contraseñas simples como "123456".</p>
+            </div>
+
+            <div class="card" data-titulo="phishing correos engaños estafas spam">
+                <div class="card-icon">🎣</div>
+                <h3>Detección de Phishing</h3>
+                <p>Verifica siempre el remitente del correo. No ingreses a enlaces ni descargues adjuntos de dudosa procedencia.</p>
+            </div>
+
+            <div class="card" data-titulo="wifi redes publicas conexion abiertas">
+                <div class="card-icon">📶</div>
+                <h3>Redes Wi-Fi Públicas</h3>
+                <p>Evita acceder a cuentas bancarias o portales institucionales cuando estés conectado a redes Wi-Fi públicas y abiertas.</p>
+            </div>
+
+            <div class="card" data-titulo="2fa doble factor autenticacion verificacion celular">
+                <div class="card-icon">📱</div>
+                <h3>Autenticación en Dos Pasos (2FA)</h3>
+                <p>Activa la verificación en dos pasos en tus correos y redes para solicitar un código único cada vez que inicies sesión.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="quiz" class="container quiz-section">
+        <div class="section-title">
+            <h2>Autoevaluación de Ciberseguridad</h2>
+            <p>Mide tus conocimientos respondiendo este breve cuestionario interactivo:</p>
+        </div>
+        
+        <form id="quiz-form">
+            <div class="question-card">
+                <p class="question-text">1. ¿Qué debes hacer si recibes un correo urgente indicando que tu cuenta será bloqueada si no confirmas tu clave?</p>
+                <label class="option-label">
+                    <input type="radio" name="p1" value="incorrecto">
+                    <span>Hacer clic inmediatamente para resolverlo rápido.</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="p1" value="correcto">
+                    <span>Ignorarlo y verificar el estado de tu cuenta desde el sitio web oficial.</span>
+                </label>
+            </div>
+
+            <div class="question-card">
+                <p class="question-text">2. ¿Es recomendable guardar tus contraseñas importantes en una nota sin clave en tu teléfono?</p>
+                <label class="option-label">
+                    <input type="radio" name="p2" value="incorrecto">
+                    <span>Sí, si el teléfono tiene bloqueo de pantalla.</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="p2" value="correcto">
+                    <span>No, lo seguro es utilizar un gestor de contraseñas cifrado.</span>
+                </label>
+            </div>
+
+            <button type="button" onclick="evaluarQuiz()" class="btn btn-primary">Evaluar Mis Respuestas</button>
+        </form>
+
+        <div id="resultado-quiz" class="resultado-box"></div>
+    </section>
+
+    <section id="contacto" class="container">
+        <div class="section-title">
+            <h2>¿Tienes Dudas o Consultas?</h2>
+            <p>Escríbenos para enviarte más información sobre ciberseguridad.</p>
+        </div>
+
+        <form id="form-contacto" class="form-custom">
+            <div class="form-group">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" required placeholder="Ej. Daniel Guerra">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" required placeholder="tu@correo.com">
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" rows="4" required placeholder="Escribe aquí tu duda..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+        </form>
+        <div id="mensaje-exito" class="alert-msg"></div>
+    </section>
+
+    <footer>
+        <p>&copy; CiberEdu. Proyecto de Ciberseguridad para Estudiantes. Desarrollado con Git y GitHub Pages.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
