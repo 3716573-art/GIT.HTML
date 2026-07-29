@@ -1,12 +1,27 @@
-// 1. Buscador/Filtro en tiempo real
+// 1. Manejo de Pantalla de Entrada
+function entrarAlSitio() {
+    const splash = document.getElementById('welcome-screen');
+    const content = document.getElementById('main-content');
+    
+    splash.style.transform = 'translateY(-100%)';
+    
+    setTimeout(() => {
+        splash.style.display = 'none';
+        content.style.display = 'block';
+        window.scrollTo(0, 0);
+    }, 800);
+}
+
+// 2. Buscador en Tiempo Real
 document.getElementById('buscador').addEventListener('keyup', function(e) {
-    const textoBuscado = e.target.value.toLowerCase();
+    const busqueda = e.target.value.toLowerCase();
     const tarjetas = document.querySelectorAll('.card');
 
     tarjetas.forEach(tarjeta => {
-        const contenido = tarjeta.getAttribute('data-titulo').toLowerCase() + " " + tarjeta.innerText.toLowerCase();
+        const info = tarjeta.innerText.toLowerCase();
+        const data = tarjeta.getAttribute('data-titulo') ? tarjeta.getAttribute('data-titulo').toLowerCase() : '';
         
-        if (contenido.includes(textoBuscado)) {
+        if(info.includes(busqueda) || data.includes(busqueda)) {
             tarjeta.style.display = 'block';
         } else {
             tarjeta.style.display = 'none';
@@ -14,39 +29,39 @@ document.getElementById('buscador').addEventListener('keyup', function(e) {
     });
 });
 
-// 2. Lógica del Quiz / Autoevaluación
+// 3. Lógica del Quiz Expandido (5 Preguntas)
 function evaluarQuiz() {
-    let puntos = 0;
-    const p1 = document.querySelector('input[name="p1"]:checked');
-    const p2 = document.querySelector('input[name="p2"]:checked');
-    const resultadoDiv = document.getElementById('resultado-quiz');
+    let nota = 0;
+    const r1 = document.querySelector('input[name="p1"]:checked');
+    const r2 = document.querySelector('input[name="p2"]:checked');
+    const r3 = document.querySelector('input[name="p3"]:checked');
+    const r4 = document.querySelector('input[name="p4"]:checked');
+    const r5 = document.querySelector('input[name="p5"]:checked');
+    
+    const display = document.getElementById('resultado-quiz');
 
-    if (!p1 || !p2) {
-        resultadoDiv.style.color = 'red';
-        resultadoDiv.innerText = 'Por favor, responde todas las preguntas antes de enviar.';
+    if(!r1 || !r2 || !r3 || !r4 || !r5) {
+        display.innerHTML = "<p style='color: #ff9f43; margin-top:1.5rem; font-weight:bold;'>⚠️ Por favor responde las 5 preguntas para obtener tu evaluación.</p>";
         return;
     }
 
-    if (p1.value === 'correcto') puntos++;
-    if (p2.value === 'correcto') puntos++;
+    if(r1.value === 'correcto') nota++;
+    if(r2.value === 'correcto') nota++;
+    if(r3.value === 'correcto') nota++;
+    if(r4.value === 'correcto') nota++;
+    if(r5.value === 'correcto') nota++;
 
-    if (puntos === 2) {
-        resultadoDiv.style.color = '#27ae60';
-        resultadoDiv.innerText = `¡Excelente! Obtuviste ${puntos}/2 puntos. Tienes excelentes hábitos de ciberseguridad.`;
+    display.style.marginTop = "2rem";
+    display.style.padding = "1.5rem";
+    display.style.borderRadius = "10px";
+
+    if(nota >= 4) {
+        display.style.background = "rgba(0, 242, 255, 0.15)";
+        display.style.border = "1px solid var(--primary)";
+        display.innerHTML = `<h3 style='color: var(--primary)'>Puntaje Excelente: ${nota}/5</h3><p>¡Dominas los conceptos clave de seguridad digital!</p>`;
     } else {
-        resultadoDiv.style.color = '#e67e22';
-        resultadoDiv.innerText = `Obtuviste ${puntos}/2 puntos. Revisa los consejos en la parte superior para reforzar tus conocimientos.`;
+        display.style.background = "rgba(112, 0, 255, 0.15)";
+        display.style.border = "1px solid var(--secondary)";
+        display.innerHTML = `<h3 style='color: var(--secondary)'>Puntaje: ${nota}/5</h3><p>Revisa la sección de Amenazas y Guía de Defensa para repasar los conceptos fallados.</p>`;
     }
 }
-
-// 3. Simulación de envío de formulario de contacto
-document.getElementById('form-contacto').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const nombre = document.getElementById('nombre').value;
-    const mensajeExito = document.getElementById('mensaje-exito');
-
-    mensajeExito.innerText = `¡Gracias, ${nombre}! Tu mensaje ha sido enviado correctamente.`;
-    
-    this.reset();
-});
